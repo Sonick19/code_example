@@ -1,0 +1,39 @@
+{% extends 'base_order.html' %}
+
+
+{% block content %}
+
+
+    <h2>Create Order</h2>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    <form method="post" action="{% url 'order:create_order' %}">
+        {% csrf_token %}
+        {{form.as_p}}
+        <!-- <label for="book_id">Book:</label>
+        <select id="book_id" name="book_id" required>
+          <option value="">Select a book</option>
+          {% for book in books %}
+            <option value="{{ book.id }}">{{ book.name }}</option>
+          {% endfor %}
+        </select>
+        <br>
+        <label for="plated_end_at">Planned Return Date:</label>
+        <input type="date" id="plated_end_at" name="plated_end_at" required>
+        <br> -->
+        <button type="submit">Create Order</button>
+      </form>
+
+      <form method="post" action="{% url 'order:create_order' %}">
+        {% csrf_token %}
+
+      </form>
+
+{% endblock %}
+

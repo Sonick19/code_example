@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+</head>
+<body>
+<p> <a href="/home/out"> Log out</a>.</p>
+<p> <a href="/home"> Home </a></p>
+<h1>This is a list of avaliable books:</h1>
+<form action="{% url 'book:book_main_page' %}", method = "post", target = "_self">
+{% csrf_token %}
+  <label for="parameter">Choose a filter parameter:</label>
+  <select id="parameter" name="parameter">
+    <option value="None">None</option>
+    <option value="authors">authors</option>
+    <option value="title">title</option>
+    <option value="count">count</option>
+    <label for="value"></label><br>
+      <input type="text" id="value" name="value">
+  </select>
+  <button type="submit">Filter</button>
+</form><br>
+{% if request.user.role == 1 %}
+    <form action="{% url 'book:book_add_page' %}", method = "post", target = "_self">
+    {% csrf_token %}
+      <label for="user">Choose a user:</label>
+      <select id="user" name="user">
+      {% for x in user %}
+      <option value="{{x.id}}">{{x.email}}</option>
+      {% endfor %}
+      </select>
+      <button type="submit">Filter</button>
+    </form><br>
+{% endif %}
+{% if request.user.role == 1 %}
+    <form action="{% url 'book:add_book' %}", target= "_self">
+    {% csrf_token %}
+      <button type="submit">ADD NEW BOOK</button>
+    </form>
+{% endif %}
+<ul>
+  {% for x in books %}
+    <li><a href="/book/{{ x.id }}">{{ x.name}}</a></li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>

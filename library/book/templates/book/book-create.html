@@ -1,0 +1,14 @@
+
+<!--books/templates/books/book-create.html-->
+
+<form action="." method="POST">
+
+{% csrf_token %}
+{{ form.as_p }}
+<table>
+
+</table>
+<button type="submit">SUBMIT</button>
+</form>
+
+<p> Return back to the <a href="/book">book</a> list.</p>

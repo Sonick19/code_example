@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{book.name}}</title>
+</head>
+<body>
+<p> <a href="/home/out"> Log out</a></p>
+<p> <a href="/home"> Home </a></p>
+<h1>Information about book:</h1>
+{% if request.user.role == 1 %}
+<p><a href="/book/edit/{{ book.id }}">EDIT</a></p>
+{% endif %}
+<p>Name: {{book.name}}</p>
+<p>Author: {% for elem in book_authors %}
+            {{elem.name}} {{elem.surname}} {{elem.patronymic}},
+            {% endfor %} 
+
+</p>
+<p>Count: {{book.count}}</p>
+<p>Avaliable count: {{avaliable}}</p>
+<p>Descriptions: </br>
+{{book.description}}</p>
+</br>
+
+<p> Return back to the <a href="/book">book</a> list.</p>
+
+</body>
+</html>

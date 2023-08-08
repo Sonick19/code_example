@@ -1,0 +1,13 @@
+
+
+<form action="{% url 'author:edit' author.id %}" method="POST">
+
+{% csrf_token %}
+{{ form.as_p }}
+<table>
+
+</table>
+<button type="submit">SUBMIT</button>
+
+<p> Return back to the <a href="/author">author</a> list.</p>
+</form>
